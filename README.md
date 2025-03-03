@@ -1,9 +1,7 @@
-# Group "GROUP NAME"
+# Group "supermassive_black_hole.js"
 
 ## Members
-- s123456 LASTNAME FIRSTNAME
-- s123456 LASTNAME FIRSTNAME
-- s123456 LASTNAME FIRSTNAME
+- s344108 OTHMANI AMIR
 
 # Exercise "NAME OF EXERCISE"
 
