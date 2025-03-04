@@ -2,6 +2,7 @@
 
 ## Members
 - s344108 OTHMANI AMIR
+- s338701 QURESHI SADAF
 
 # Exercise "NAME OF EXERCISE"
 
