@@ -1,0 +1,46 @@
+bag:
+	id,
+	type (regular or surprise),
+	content,
+	associated order,
+	size,
+	price,
+	associated establishment,
+	time range,
+	state (available or reserved)
+
+establishment:
+	id,
+	type (store or restaurant),
+	name,
+	address,
+	phone number,
+	category
+
+user:
+	id,
+	username,
+	name,
+	surname,
+	password(?),
+	special requests (includes allergies)
+
+shopping cart:
+	id,
+	associated user,
+	bags,
+
+food item:
+	id,
+	food type,
+	category(?) (maye fruit, meat or something),
+	food specifications (for special requests),
+
+reservation:
+	id,
+	associated user,
+	associated bag,
+	associated establishment,
+	purchase time,
+	time range to pick up,
+	cost (maybe not needed)
