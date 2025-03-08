@@ -4,8 +4,11 @@
 - s344108 OTHMANI AMIR
 - s338701 QURESHI SADAF
 
-# Exercise "NAME OF EXERCISE"
+# Exercise "Rescuing Surplus Food"
 
 # Lab Journal
 
-(you may update this file to keep track of the progress of your group work, throughout the weeks)
+## Lab 1
+
+There's still work in progress.
+Anyway, we're defining the objects required for the application, each containing all the attributes and methods needed.

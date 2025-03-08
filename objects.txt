@@ -1,13 +1,13 @@
 bag:
 	id,
 	type (regular or surprise),
-	content,
-	associated order,
+	food items,
+	associated reservation,
 	size,
 	price,
 	associated establishment,
-	time range,
-	state (available or reserved)
+	state (available or reserved),
+	time range to pick up
 
 establishment:
 	id,
@@ -33,14 +33,12 @@ shopping cart:
 food item:
 	id,
 	food type,
-	category(?) (maye fruit, meat or something),
 	food specifications (for special requests),
 
 reservation:
 	id,
 	associated user,
-	associated bag,
-	associated establishment,
+	associated shopping cart,
+	associated bags,
 	purchase time,
-	time range to pick up,
 	cost (maybe not needed)
