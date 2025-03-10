@@ -2,16 +2,16 @@
 
 import dayjs from 'dayjs';
 
-function Bag(id, reservation_id, establishment_id, type, size, content, price, state, time_range) {
+function Bag(id, reservation_id, establishment_id, type, size, content, price, time_range) {
 	this.id = id;
 	this.reservation_id = reservation_id;
 	this.establishment_id = establishment_id;
 	this.type = type;
 	this.size = size;
-	this.content = content;		//probably this line will have to be changed
+	this.content = content;		//TODO: probably this line will have to be changed
 	this.price = price;
-	this.state = state;
-	this.time_range = time_range;
+	this.time_range = time_range;  //TODO: also this will have to be changed
+	this.state = "available";
 }
 
 function Establishment(id, type, name, address, phone_number, category) {
@@ -31,9 +31,11 @@ function User(id, username, password, name, surname) {
 	this.surname = surname;
 	this.special_requests = [];
 
-	this.add = (special_request) => {
+	this.add_request = (special_request) => {
 		this.special_requests.push(special_request);
 	}
+
+	this.remove_request = (special_request) => this.special_requests.filter(sr => sr === special_request)
 }
 
 function FoodItem(id, type, specifications) {
@@ -46,24 +48,47 @@ function ShoppingCart(id, user_id) {
 	this.id = id;
 	this.user_id = user_id;
 	this.selected_bags = [];
+	this.price = 0;
 
-	this.add = (bag) => {
-		this.selected_bags.push(bag);
+	this.add_bag = (bag) => {
+		if (bag.state === "available")
+			this.selected_bags.push(bag);
+		else
+			console.log("bag already reserved");
+	}
+
+	this.remove_bag = (bag_id) => this.selected_bags.filter(b => b.id === bag_id)
+
+	this.calculatePrice = () => {
+		this.selected_bags.forEach((bag) => {
+			this.price += bag.price;
+		});
 	}
 
 	this.confirm_reservation = () => {
-		// for now, I have no idea on how to implement this
+		this.selected_bags.forEach((bag, index) => {
+			this.selected_bags[index].state = "reserved";
+		});
+		calculatePrice();	// is "this" necessary in this case?
+	}
+
+	this.cancel_reservation = () => {
+		this.selected_bags.forEach((bag, index) => {
+			this.selected_bags[index].state = "available";
+		});
+		this.price = 0;
 	}
 }
 
-function Reservation(id, user_id, shopping_cart_id, bags_list, purchase_time) {
+function Reservation(id, user_id, shopping_cart, purchase_time, price) {
 	this.id = id;
 	this.user_id = user_id;
-	this.shopping_cart_id = shopping_cart_id;
-	this.bags_list = bags_list;		//this line is probably wrong
+	this.shopping_cart = shopping_cart;
 	this.purchase_time = purchase_time;
+	this.price = price;
+	
 
-	//TODO: make a function that computes the total price
-
+	//TODO: if a reservation is canceled, the reservation object has to be deleted,
+	//		but I don't know how to manage that yet.
 }
 
