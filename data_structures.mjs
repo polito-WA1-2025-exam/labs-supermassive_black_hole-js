@@ -1,17 +1,33 @@
 "use strict";
 
 import dayjs from 'dayjs';
+import sqlite from 'sqlite3';
 
-function Bag(id, reservation_id, establishment_id, type, size, content, price, time_range) {
+const db = new sqlite.Database('objects.sqlite', (err) => { if (err) throw err });
+
+function Bag(id, reservation_id, establishment_id, type, size, price, time_range) {
 	this.id = id;
 	this.reservation_id = reservation_id;
 	this.establishment_id = establishment_id;
-	this.type = type;
-	this.size = size;
-	this.content = content;		//TODO: probably this line will have to be changed
-	this.price = price;
-	this.time_range = time_range;  //TODO: also this will have to be changed
-	this.state = "available";
+	this.type = type;							// Type can only be either regular or surprise
+	this.size = size;							// Only three possible sizes: small, medium and large
+	this.price = price;							// Price may depend on the food items, I should pay attention to this later
+	this.time_range = time_range;  				// TODO: I don't really know how to manage this
+	this.state = "available";					// I assume every bag is available initially
+
+	this.food_items = []; 						// This should contain a list of all the food items in the bag
+}
+
+function FoodItem(id, food_item) {
+	this.id = id;
+	this.food_item = food_item;
+	this.specifications = []; 					// This attribute is used to refer to the special requests
+}
+
+function FoodSpecification(id, food_specification) {	// This object is used to manage food specifications in a standardized way.
+														// Although, I don't think I can actually link them to the user's special requests.
+	this.id = id;
+	this.food_specification = food_specification;
 }
 
 function Establishment(id, type, name, address, phone_number, category) {
@@ -26,10 +42,11 @@ function Establishment(id, type, name, address, phone_number, category) {
 function User(id, username, password, name, surname) {
 	this.id = id;
 	this.username = username;
-	this.password = password;
+	this.password = password;		// This attribute will need encryption but I don't know how it's managed in sqlite
 	this.name = name;
 	this.surname = surname;
-	this.special_requests = [];
+	this.special_requests = [];		// This attribute is weird because the user must be able to specify it textually,
+									// but in this way it's impossible to apply foreign keys
 
 	this.add_request = (special_request) => {
 		this.special_requests.push(special_request);
@@ -38,11 +55,6 @@ function User(id, username, password, name, surname) {
 	this.remove_request = (special_request) => this.special_requests.filter(sr => sr === special_request)
 }
 
-function FoodItem(id, type, specifications) {
-	this.id = id;
-	this.type = type;
-	this.specifications = specifications;
-}
 
 function ShoppingCart(id, user_id) {
 	this.id = id;
@@ -80,15 +92,17 @@ function ShoppingCart(id, user_id) {
 	}
 }
 
-function Reservation(id, user_id, shopping_cart, purchase_time, price) {
+
+function Reservation(id, user_id, shopping_cart_id, purchase_time, price) {
 	this.id = id;
-	this.user_id = user_id;
-	this.shopping_cart = shopping_cart;
+	this.user_id = user_id;						// Is user_id actually needed?
+	this.shopping_cart_id = shopping_cart_id;
 	this.purchase_time = purchase_time;
 	this.price = price;
+	
+	// Should I also put the list of selected bags here?
 	
 
 	//TODO: if a reservation is canceled, the reservation object has to be deleted,
 	//		but I don't know how to manage that yet.
 }
-
