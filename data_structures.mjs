@@ -120,11 +120,24 @@ function getEstablishments () {
 
 				resolve(result);
 			}
+			db.close();
 		})
 	})
 }
 
-getEstablishments().then((list => {console.log("All the establishments are: ", list)}))
-.catch(err => {console.error("Error: ", err)});
+function insertEstablishment() {
+	return new Promise ((resolve, reject) => {
+		const sql = `INSERT INTO Establishment VALUES (4, "store", "Auchan", "Torino, via che non esiste", "436374", "vario")`;
 
-db.close();
+		db.run(sql, (err) => {
+			if (err)
+				reject(err);
+			else 
+				resolve('Done');
+		});
+	})
+}
+
+insertEstablishment().then( result => {console.log(result); return getEstablishments();})
+.then((list => {console.log("All the establishments are: ", list)}))
+.catch(err => {console.error("Error: ", err)});

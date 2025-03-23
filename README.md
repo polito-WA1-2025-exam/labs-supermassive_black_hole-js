@@ -12,3 +12,5 @@
 
 There's still work in progress.
 Anyway, we're defining the objects required for the application, each containing all the attributes and methods needed.
+
+TODO: UPDATE THIS README AS SOON AS POSSIBLE
