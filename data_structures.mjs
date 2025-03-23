@@ -7,8 +7,8 @@ const db = new sqlite.Database('objects.sqlite', (err) => { if (err) throw err }
 
 function Bag(id, reservation_id, establishment_id, type, size, price, time_range) {
 	this.id = id;
-	this.reservation_id = reservation_id;
-	this.establishment_id = establishment_id;
+	this.reservation_id = reservation_id;		// This is nullable
+	this.establishment_id = establishment_id;	// This is not nullable
 	this.type = type;							// Type can only be either regular or surprise
 	this.size = size;							// Only three possible sizes: small, medium and large
 	this.price = price;							// Price may depend on the food items, I should pay attention to this later
@@ -21,14 +21,8 @@ function Bag(id, reservation_id, establishment_id, type, size, price, time_range
 function FoodItem(id, food_item) {
 	this.id = id;
 	this.food_item = food_item;
-	this.specifications = []; 					// This attribute is used to refer to the special requests
-}
-
-function FoodSpecification(id, food_specification) {	// This object is used to manage food specifications in a standardized way.
-														// Although, I don't think I can actually link them to the user's special requests.
-	this.id = id;
-	this.food_specification = food_specification;
-}
+	this.specifications = []; 				// This attribute is used to refer to the special requests (but I don't actually link them for now)
+}											// Pay attention: here I'm representing the specifications as a list, but actually it's just a string in the db
 
 function Establishment(id, type, name, address, phone_number, category) {
 	this.id = id;
@@ -46,7 +40,7 @@ function User(id, username, password, name, surname) {
 	this.name = name;
 	this.surname = surname;
 	this.special_requests = [];		// This attribute is weird because the user must be able to specify it textually,
-									// but in this way it's impossible to apply foreign keys
+									// but in this way it's impossible to apply foreign keys (in fact I won't)
 
 	this.add_request = (special_request) => {
 		this.special_requests.push(special_request);
@@ -58,8 +52,8 @@ function User(id, username, password, name, surname) {
 
 function ShoppingCart(id, user_id) {
 	this.id = id;
-	this.user_id = user_id;
-	this.selected_bags = [];
+	this.user_id = user_id;				// This is not nullable
+	this.selected_bags = [];			// This will contain the list of the selected bags
 	this.price = 0;
 
 	this.add_bag = (bag) => {
@@ -84,7 +78,7 @@ function ShoppingCart(id, user_id) {
 		calculatePrice();	// is "this" necessary in this case?
 	}
 
-	this.cancel_reservation = () => {
+	this.cancel_reservation = () => {							// I think this method belongs to the Reservation class
 		this.selected_bags.forEach((bag, index) => {
 			this.selected_bags[index].state = "available";
 		});
@@ -93,14 +87,19 @@ function ShoppingCart(id, user_id) {
 }
 
 
-function Reservation(id, user_id, shopping_cart_id, purchase_time, price) {
+function Reservation(id, user_id, purchase_time, price) {
 	this.id = id;
-	this.user_id = user_id;						// Is user_id actually needed?
-	this.shopping_cart_id = shopping_cart_id;
+	this.user_id = user_id;							// This is not nullable
+	this.shopping_cart_id = shopping_cart_id;		// This is not nullable
 	this.purchase_time = purchase_time;
 	this.price = price;
 	
-	// Should I also put the list of selected bags here?
+	this.reserved_bags = [];			// This should be a list of the reserved bags
+
+	this.complete_reservation = () => {
+		// This method should assign the reservation id to the reserved bags
+	}
+	
 	
 
 	//TODO: if a reservation is canceled, the reservation object has to be deleted,
