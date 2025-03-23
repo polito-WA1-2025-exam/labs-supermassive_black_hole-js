@@ -75,7 +75,7 @@ function ShoppingCart(id, user_id) {
 		this.selected_bags.forEach((bag, index) => {
 			this.selected_bags[index].state = "reserved";
 		});
-		calculatePrice();	// is "this" necessary in this case?
+		//calculatePrice();	// is "this" necessary in this case?
 	}
 
 	this.cancel_reservation = () => {							// I think this method belongs to the Reservation class
@@ -105,3 +105,26 @@ function Reservation(id, user_id, purchase_time, price) {
 	//TODO: if a reservation is canceled, the reservation object has to be deleted,
 	//		but I don't know how to manage that yet.
 }
+
+function getEstablishments () {
+	return new Promise ((resolve, reject) => {
+
+		const sql = `SELECT * FROM Establishment`;
+
+		db.all(sql, (err, rows) => {
+			if (err)
+				reject(err);
+			else {
+				const result = rows.map((item) => new Establishment(
+					item.id, item.type, item.name, item.address, item.phone_number, item.category));
+
+				resolve(result);
+			}
+		})
+	})
+}
+
+getEstablishments().then((list => {console.log("All the establishments are: ", list)}))
+.catch(err => {console.error("Error: ", err)});
+
+db.close();
