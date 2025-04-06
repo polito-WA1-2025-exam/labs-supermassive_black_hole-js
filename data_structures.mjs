@@ -3,6 +3,8 @@
 import dayjs from 'dayjs';
 import sqlite from 'sqlite3';
 
+
+
 const db = new sqlite.Database('objects.sqlite', (err) => { if (err) throw err });
 
 function Bag(id, reservation_id, establishment_id, type, size, price, time_range) {
@@ -106,7 +108,7 @@ function Reservation(id, user_id, purchase_time, price) {
 	//		but I don't know how to manage that yet.
 }
 
-function getEstablishments () {
+export function getEstablishments () {
 	return new Promise ((resolve, reject) => {
 
 		const sql = `SELECT * FROM Establishment`;
@@ -138,6 +140,10 @@ function insertEstablishment() {
 	})
 }
 
+/*
+
 insertEstablishment().then( result => {console.log(result); return getEstablishments();})
 .then((list => {console.log("All the establishments are: ", list)}))
 .catch(err => {console.error("Error: ", err)});
+
+*/
