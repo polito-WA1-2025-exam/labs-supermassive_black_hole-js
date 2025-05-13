@@ -31,3 +31,8 @@ These are the tables we are working with:
  
 If we want to visualize the whole database, it looks like this:
 ![image](https://github.com/user-attachments/assets/e5e83f7b-d959-4002-badb-ba64e1945d63)
+
+
+## Lab n
+
+Bla bla bla test.
