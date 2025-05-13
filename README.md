@@ -30,4 +30,5 @@ These are the tables we are working with:
   - Also this table does not correspond to a JS object for the same reasons of AssociationBagFoodItem.
  
 If we want to visualize the whole database, it looks like this:
+
 ![image](https://github.com/user-attachments/assets/e5e83f7b-d959-4002-badb-ba64e1945d63)
