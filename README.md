@@ -36,3 +36,5 @@ If we want to visualize the whole database, it looks like this:
 ## Lab n
 
 Bla bla bla test.
+
+Test #2
