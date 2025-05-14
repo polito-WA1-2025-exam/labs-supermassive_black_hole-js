@@ -1,7 +1,8 @@
 function Footer(props) {
 
-    return <><p>&copy; 2025 WA1</p>
-    </>
+    return  <div className="bg-dark">
+                <p className="text-light">&copy; 2025 WA1</p>
+            </div>
 }
 
 export default Footer

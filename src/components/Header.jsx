@@ -1,13 +1,12 @@
-import { Container, Navbar } from 'react-bootstrap'
-import { Button } from "react-bootstrap"
-
+import { Container, Navbar } from "react-bootstrap"
 
 function Header(props) {
 
-  return <Navbar bg='primary' >
-    <Container fluid> <h1 style={{color:'white'}}>Welcome user!</h1>
-    </Container>
-  </Navbar>
+  return <Navbar bg='primary'>
+            <Container fluid>
+              <h1 className="text-light">Welcome user!</h1>
+            </Container>
+          </Navbar>
 }
 
 export default Header

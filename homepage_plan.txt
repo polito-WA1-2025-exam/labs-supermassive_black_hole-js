@@ -1,0 +1,5 @@
+First things first:
+
+- Header
+- Footer
+- make the page cover fullscreen
