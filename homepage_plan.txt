@@ -1,5 +1,13 @@
 First things first:
 
-- Header
-- Footer
-- make the page cover fullscreen
+- Header (done)
+- Footer (done)
+- make the page cover fullscreen (done)
+
+
+Planning homepage content:
+
+- List of establishments
+
+
+The rest is visible only after login
