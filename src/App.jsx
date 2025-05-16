@@ -14,9 +14,7 @@ function App() {
   return (
     <>
       <Header/>
-      <Container fluid className='flex-grow-1'>
-        <EstablishmentDisplay/>
-      </Container>
+      <EstablishmentDisplay/>
       <Footer/>
     </>
   )
