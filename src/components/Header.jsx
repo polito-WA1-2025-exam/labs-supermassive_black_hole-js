@@ -1,10 +1,19 @@
-import { Container, Navbar } from "react-bootstrap"
+import { Container, Navbar, Button } from "react-bootstrap"
 
 function Header(props) {
 
-  return <Navbar bg='primary'>
-            <Container fluid>
-              <h1 className="text-light">Welcome user!</h1>
+  const handleRedirect = () => {
+    window.open('about:blank', '_blank');
+  };
+
+  return <Navbar bg='primary py-3 mt-auto'>
+            <Container fluid className="px-4">
+              <div className="d-flex justify-content-between align-items-center">
+                <h1 className="text-light">Welcome user!</h1>
+                <Button variant="primary" onClick={handleRedirect}>
+                  Open Blank Page
+                </Button>
+              </div>
             </Container>
           </Navbar>
 }
