@@ -1,18 +1,16 @@
-// import something
+import { Establishment } from "../models/SurplusModels.mjs"
 
 const URI = 'http://localhost:3001/api'
 
 // API CALLS
 
-/* Example:
-
-async function loadQuestions() {
+async function loadEstablishments() {
     try {
-        const response = await fetch(URI + '/questions')
+        const response = await fetch(URI + '/establishments')
         if (response.ok) {
-            const questions = await response.json()
+            const establishments = await response.json()
             // console.log(questions)
-            return questions
+            return establishments
         } else {
             throw new Error("Application error in loadQuestions")
         }
@@ -22,6 +20,4 @@ async function loadQuestions() {
     }
 }
 
-*/
-
-// export something
+export { loadEstablishments };

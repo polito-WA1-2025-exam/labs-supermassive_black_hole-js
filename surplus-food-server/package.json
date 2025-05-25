@@ -6,7 +6,9 @@
     "main": "server.mjs",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
+        "start": "node server.mjs",
+        "dev": "nodemon --inspect server.mjs",
+        "debug": "node --inspect-brk server.mjs"
     },
     "dependencies": {
         "cors": "^2.8.5",
