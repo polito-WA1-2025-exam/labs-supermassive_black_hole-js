@@ -1,7 +1,0 @@
-Goals for now:
-
-- re-arrange the folder project (done)
-- make the static homepage
-    - plan the the page aspect
-    - make the page without functions
-    - add functions later on

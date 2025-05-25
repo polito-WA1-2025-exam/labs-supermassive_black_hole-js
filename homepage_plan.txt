@@ -7,7 +7,7 @@ First things first:
 
 Planning homepage content:
 
-- List of establishments
+- List of establishments (kinda done)
 
 
 The rest is visible only after login
