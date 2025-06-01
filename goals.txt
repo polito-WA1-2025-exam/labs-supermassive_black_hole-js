@@ -1,8 +1,11 @@
-Step 1:
-understand where is the homepage route
+New goals:
 
-Step 2:
-make other routes
+1) understand how to insert new data in the db
 
-Step 3:
-I don't really know what to do afterwards
+2) understand what goals are
+
+3) understand better the setup and the promises in app.jsx
+
+4) understand better the props
+
+5) understand hooks

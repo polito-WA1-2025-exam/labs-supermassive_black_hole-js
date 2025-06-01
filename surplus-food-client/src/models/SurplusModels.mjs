@@ -1,4 +1,6 @@
-function Establishment(id, type, name, address, phone_number, category) {
+// Is this even useful????
+
+/* function Establishment(id, type, name, address, phone_number, category) {
     this.id = id;
     this.type = type;
     this.name = name;
@@ -7,4 +9,4 @@ function Establishment(id, type, name, address, phone_number, category) {
     this.category = category;
 }
 
-export { Establishment };
+export { Establishment }; */

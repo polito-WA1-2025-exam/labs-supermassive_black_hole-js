@@ -1,10 +1,8 @@
-//import
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import {check, validationResult} from 'express-validator';
 
-import { listEstablishments } from './dao.mjs';
+import { listEstablishments, listPeople } from './dao.mjs';
 
 // init
 const app = express();
@@ -17,11 +15,20 @@ app.use(cors());
 
 // ROUTES
 
-// GET /api/questions
+// GET /api/establishments
 app.get('/api/establishments', (request, response) => {
   listEstablishments()
   .then(establishments => {
     setTimeout( () => {response.json(establishments)}, 2000)
+  })
+  .catch(() => response.status(500).end());
+});
+
+// GET /api/people
+app.get('/api/people', (request, response) => {
+  listPeople()
+  .then(people => {
+    response.json(people)
   })
   .catch(() => response.status(500).end());
 });
