@@ -36,3 +36,17 @@ export const listPeople = () => {
     });
   });
 }
+
+// add a new person
+export const addPerson = (name, surname) => {
+  return new Promise((resolve, reject) => {
+    const sql = 'INSERT INTO people (name, surname) VALUES (?, ?)';
+    db.run(sql, [name, surname], function(err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ id: this.lastID, name, surname });
+      }
+    });
+  });
+}

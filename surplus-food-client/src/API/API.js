@@ -33,4 +33,25 @@ async function loadPeople() {
     }
 }
 
-export { loadEstablishments, loadPeople };
+async function addPerson(name, surname) {
+    try {
+        const response = await fetch(URI + '/people', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, surname })
+        })
+        
+        if (response.ok) {
+            const person = await response.json()
+            return person
+        } else {
+            throw new Error("Application error in addPerson")
+        }
+    } catch (ex) {
+        throw new Error("Network error in addPerson " + ex)
+    }
+}
+
+export { loadEstablishments, loadPeople, addPerson };
